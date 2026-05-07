@@ -19,6 +19,7 @@ const COSMOS_KEY = process.env.COSMOS_KEY;
 const COSMOS_DATABASE = process.env.COSMOS_DATABASE || 'TravelGoDB';
 const COSMOS_CONTAINER = process.env.COSMOS_CONTAINER || 'Media';
 
+
 app.use(cors({ origin: FRONTEND_URL === '*' ? '*' : FRONTEND_URL }));
 app.use(express.json());
 

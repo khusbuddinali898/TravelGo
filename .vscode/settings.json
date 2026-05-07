@@ -1,4 +1,8 @@
 {
     "appService.defaultWebAppToDeploy": "/subscriptions/a601001d-1663-45d9-b4a5-67f21fa9852f/resourceGroups/TravelGo-RG/providers/Microsoft.Web/sites/travelgo-backend",
-    "appService.deploySubpath": "travelgo-cw2\\backend"
+    "appService.deploySubpath": "travelgo-cw2\\backend",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
 }

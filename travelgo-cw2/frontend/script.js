@@ -1,10 +1,13 @@
 let API = "http://localhost:5000";
+const API = "https://travelgo-backend-a5gne0hqh8d9c5dn.spaincentral-01.azurewebsites.net";
+
 
 async function uploadMedia() {
   const file = document.getElementById("file").files[0];
   const userId = document.getElementById("userId").value;
   const description = document.getElementById("description").value;
   const destination = document.getElementById("destination").value;
+  
 
   if (!file || !userId ||!description || !destination) {
     alert("Please choose a file and fill all fields.");
