@@ -49,7 +49,6 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', service: 'TravelGo API' });
 });
 
-// CREATE: upload media file and save metadata
 app.post('/api/media', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
@@ -88,7 +87,7 @@ app.post('/api/media', upload.single('file'), async (req, res) => {
   }
 });
 
-// READ ALL
+
 app.get('/api/media', async (req, res) => {
   try {
     const querySpec = { query: 'SELECT * FROM c ORDER BY c.uploadDate DESC' };
@@ -100,7 +99,7 @@ app.get('/api/media', async (req, res) => {
   }
 });
 
-// READ ONE
+
 app.get('/api/media/:id', async (req, res) => {
   try {
     const querySpec = {
@@ -116,7 +115,7 @@ app.get('/api/media/:id', async (req, res) => {
   }
 });
 
-// UPDATE metadata only
+
 app.put('/api/media/:id', async (req, res) => {
   try {
     const querySpec = {
@@ -142,7 +141,6 @@ app.put('/api/media/:id', async (req, res) => {
   }
 });
 
-// DELETE from Blob Storage and Cosmos DB
 app.delete('/api/media/:id', async (req, res) => {
   try {
     const querySpec = {
