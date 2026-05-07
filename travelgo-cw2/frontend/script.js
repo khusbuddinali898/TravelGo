@@ -1,15 +1,12 @@
-let API = "http://localhost:5000";
 const API = "https://travelgo-backend-a5gne0hqh8d9c5dn.spaincentral-01.azurewebsites.net";
-
 
 async function uploadMedia() {
   const file = document.getElementById("file").files[0];
   const userId = document.getElementById("userId").value;
   const description = document.getElementById("description").value;
   const destination = document.getElementById("destination").value;
-  
 
-  if (!file || !userId ||!description || !destination) {
+  if (!file || !userId || !description || !destination) {
     alert("Please choose a file and fill all fields.");
     return;
   }
@@ -45,13 +42,10 @@ async function loadMedia() {
   mediaList.innerHTML = "";
 
   media.forEach(item => {
-    const isVideo = item.url.match(/\.(mp4|webm|ogg|mov)$/i);
+    const isVideo = item.contentType?.startsWith("video/");
 
     const mediaElement = isVideo
-      ? `<video controls>
-           <source src="${item.url}" type="video/mp4">
-           Your browser does not support video.
-         </video>`
+      ? `<video controls src="${item.url}"></video>`
       : `<img src="${item.url}" alt="${item.description}" />`;
 
     mediaList.innerHTML += `
@@ -61,7 +55,6 @@ async function loadMedia() {
           <h3>${item.destination}</h3>
           <p>${item.description}</p>
           <p><strong>User:</strong> ${item.userId}</p>
-
           <div class="actions">
             <button class="update" onclick="updateMedia('${item.id}')">Edit</button>
             <button class="delete" onclick="deleteMedia('${item.id}')">Delete</button>
@@ -80,9 +73,7 @@ async function updateMedia(id) {
 
   await fetch(`${API}/api/media/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       description: newDescription,
       destination: newDestination
